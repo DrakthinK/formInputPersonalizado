@@ -1,0 +1,160 @@
+<html lang="en">
+<style>
+    *{
+    box-sizing: border-box;
+}
+body{
+    margin: 0;
+    font-family: sans-serif;
+    background:dimgray;/* dimgray #204872; */
+}
+h1{
+    color: #fff;
+    text-align: center;
+}
+.form-register{
+    width: 95%;
+    max-width: 500px;
+    margin: auto;
+    background-color: white;
+    border-radius: 7px;
+}
+.form__titulo{
+    background: darkslategrey;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    font-weight: 30px;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    border-bottom: 5px solid crimson;
+}
+.contenedor-inputs{
+    padding: 10px 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    
+}
+select,input,img{
+    margin-bottom: 15px;
+    padding: 5px;
+    font-size: 15px;
+    border-radius: 3px;
+    border:1px solid darkgrey
+
+
+}
+.input-48{
+    width: 47%;
+
+}
+.input-24{
+    width:21%;
+}
+.input-100{
+    width: 100%;
+}
+.btn-enviar{
+    background: crimson;
+    color:#fff;
+    margin: auto;
+    padding: 5px 20px;
+    cursor: pointer;
+
+}
+.btn-enviar:active{
+    transform: scale(1.05);
+}
+.form__link{
+    width: 100%;
+    margin: 7px;
+    text-align: center;
+    font-size: 14px;
+}
+.abajo{
+    display: inline-block;
+    width: 100%;
+}
+span.form__titulo_peque{display:block;
+    text-align:center;
+    width:200px;
+    }
+
+.label {
+    color: #A9A9A9;
+    font-weight: lighter;
+    text-transform: uppercase;
+    /* margin-right: 10px !important; */
+    font-size: 14px;
+    display: block;
+}
+img .imagencaptcha{
+
+ margin: auto;
+ margin-bottom: 0 !important;;
+}
+.cambioimagen{
+    text-align: center;
+}
+.input-33{
+ width: 30%;
+}
+.error {
+  color:red !important;
+  text-align: center;
+}
+
+    .no-stock{
+        background-color:red ;
+    }
+    .si-stock{
+        background-color:green ;
+    }
+</style>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="css/app.css"> -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+</head>
+<body>
+    <h1 >Formulario del Cagon</h1>
+    <form action="" class="form-register">
+        <h2 class="form__titulo">COMO LATEAR SIN EL CAGON</h2>
+        <div class="contenedor-inputs">
+            <label for=""> BUSCA ESTO:['piero','diego','maria','jose','claudio','sebatian','thaisa','chis','zap']</label><input type="text" name="nombre" placeholder="nombre" id="nombre"  class="input-48" required>
+        </div>
+    </form>
+</body>
+</html>
+<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script>
+   
+
+$("#nombre").autocomplete({
+   source: ['piero','diego','maria','jose','claudio','sebatian','thaisa','chis','monica','zap'],
+    });
+    $.ui.autocomplete.prototype._renderItem = function (ul, item) {        
+        return $("<li  onmouseover='mouseOver(this)' onmouseout='mouseOut(this)'></li>")
+            .data("item.autocomplete", item)
+            .append("<a >" +item.value+"|"+Math.floor(Math.random()*10)+"</a>")
+            .appendTo(ul);
+    };
+
+function mouseOver(elem) {
+    //CONDICION
+    let stock = elem.childNodes[0].text.split('|')[1];
+    //console.log(elem.childNodes[0].text.split('|'))
+    let color = stock>0? 'si-stock':'no-stock';
+    elem.setAttribute('class',color);
+}
+
+function mouseOut(elem) {
+    elem.setAttribute('class', 'ui-menu-item');
+   
+    }
+</script>
